@@ -1,9 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 
 const baseURL = `//reqres.in/api`
-// const baseURL = `//tfd.blob.core.windows.net/blobfs/data`
 
-export default (option: Object) => {
+export default (option: AxiosRequestConfig) => {
     return axios({
         ...option,
         // withCredentials: true,

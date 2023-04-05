@@ -40,9 +40,9 @@ onMounted(() => {
 
         isLoading.value = true
         try {
-            let res = (await axiosAPI({ methods: 'GET', url: '/users' })).data
+            let res = (await axiosAPI({ method: 'GET', url: '/users' })).data
             if (!res.data) return
-            res.data.forEach((data) => {
+            res.data.forEach((data: any) => {
                 dataList.push({
                     url: data.avatar,
                     name: `${data.first_name} ${data.last_name}`,
@@ -53,7 +53,7 @@ onMounted(() => {
             isLoading.value = false
         } catch (err) {
             console.log(err)
-            // obeserver.unobserve(entries[0])
+            // obeserver.unobserve(entries[])
         }
     }, { threshold: 0.8 })
 
