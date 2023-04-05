@@ -14,10 +14,9 @@
                                 flex justify-start items-center gap-2 
                                 rounded-full group-hover:bg-gray-200 transition-all duration-100">
                         <div class="h-[52px] w-[52px] grid place-items-center cursor-pointer rounded-full">
-                            <div :style="router.currentRoute.value.path.substring(1) == item.name ?
-                            { backgroundImage: `url('src/assets/icon/${item.focus}')` } : { backgroundImage: `url('src/assets/icon/${item.static}')` }"
-                                class="h-[28px] w-[28px] bg-contain bg-center bg-no-repeat">
-                            </div>
+                            <img :src="router.currentRoute.value.path.substring(1) == item.name ?
+                            `${item.focus}` : `${item.static}`"
+                                class="h-[28px] w-[28px] bg-contain bg-center bg-no-repeat" />
                         </div>
                         <div class="text-xl">{{ item.name }}</div>
                     </div>
@@ -26,28 +25,26 @@
         </div>
     </div>
 </template>
-<!-- router.currentRoute.value.path.substring(1) == item.name ?
-                            [`bg-[url('./assets/icon/${item.focus}')]`] : [`bg-[url('./assets/icon/${item.static}')]`] -->
+
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
-import { useRouter } from 'vue-router';
-const router = useRouter()
-console.log(router.currentRoute.value)
+import { reactive } from 'vue'
+import router from '../router';
+
 const Navlist = reactive([
     {
         name: 'home',
-        focus: 'home.png',
-        static: 'homestatic.png',
+        focus: new URL('/src/assets/icon/home.svg', import.meta.url),
+        static: new URL('/src/assets/icon/homeoutline.svg', import.meta.url)
     },
     {
         name: 'explore',
-        static: 'searchstatic.png',
-        focus: 'search.png'
+        focus: new URL('/src/assets/icon/search.png', import.meta.url),
+        static: new URL('/src/assets/icon/searchstatic.png', import.meta.url)
     },
     {
         name: 'notification',
-        static: 'notificationscircleoutline.svg',
-        focus: 'notificationscircle.svg'
+        focus: new URL('/src/assets/icon/notificationscircle.svg', import.meta.url),
+        static: new URL('/src/assets/icon/notificationscircleoutline.svg', import.meta.url)
     },
 ])
 </script>
